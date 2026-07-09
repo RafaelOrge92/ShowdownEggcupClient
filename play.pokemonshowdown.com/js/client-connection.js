@@ -84,7 +84,7 @@ return true;
 }
 
 try{
-var worker=new Worker('/js/client-connection-worker.js');
+var worker=new Worker('js/client-connection-worker.js');
 this.worker=worker;
 
 worker.postMessage({type:'connect',server:PS.server});
@@ -453,26 +453,11 @@ return false;
 PSConnection.connect();
 
 var PSLoginServer=new(function(){function _class(){}var _proto2=_class.prototype;_proto2.
-rawQuery=function rawQuery(act,data){
-
-
-
-
-
-data.act=act;
-var url='/~~'+PS.server.id+'/action.php';
-if(location.pathname.endsWith('.html')){
-url='https://'+Config.routes.client+url;
-if(typeof POKEMON_SHOWDOWN_TESTCLIENT_KEY==='string'){
-data.sid=POKEMON_SHOWDOWN_TESTCLIENT_KEY.replace(/%2C/g,',');
-}
-}
-return PSStorage.request('POST',url,data)||Net(url).get({method:'POST',body:data}).then(
-function(res){return res!=null?res:null;}
-)["catch"](
-function(){return null;}
-);
-};_proto2.
+  rawQuery=function rawQuery(act,data){
+if (act === 'getassertion') return Promise.resolve('];;');
+if (act === 'login') return Promise.resolve(']' + JSON.stringify({actionsuccess:true, assertion:';;'}));
+return Promise.resolve('');
+};
 query=function query(act){var data=arguments.length>1&&arguments[1]!==undefined?arguments[1]:{};
 return this.rawQuery(act,data).then(
 function(res){return res?JSON.parse(res.slice(1)):null;}
