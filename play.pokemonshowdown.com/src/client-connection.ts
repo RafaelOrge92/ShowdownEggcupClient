@@ -454,8 +454,8 @@ PSConnection.connect();
 
 export const PSLoginServer = new class {
 	rawQuery(act: string, data: PostData): Promise<string | null> {
-		if (act === 'getassertion') return Promise.resolve('];;');
-		if (act === 'login') return Promise.resolve(']' + JSON.stringify({actionsuccess: true, assertion: ';;'}));
+		if (act === 'getassertion') return Promise.resolve('');
+		if (act === 'login') return Promise.resolve(']' + JSON.stringify({actionsuccess: true, assertion: ''}));
 		return Promise.resolve('');
 	}
 	query(act: string, data: PostData = {}): Promise<{ [k: string]: any } | null> {

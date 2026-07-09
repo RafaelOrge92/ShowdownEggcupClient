@@ -454,8 +454,8 @@ PSConnection.connect();
 
 var PSLoginServer=new(function(){function _class(){}var _proto2=_class.prototype;_proto2.
 rawQuery=function rawQuery(act,data){
-if(act==='getassertion')return Promise.resolve('];;');
-if(act==='login')return Promise.resolve(']'+JSON.stringify({actionsuccess:true,assertion:';;'}));
+if(act==='getassertion')return Promise.resolve('');
+if(act==='login')return Promise.resolve(']'+JSON.stringify({actionsuccess:true,assertion:''}));
 return Promise.resolve('');
 };_proto2.
 query=function query(act){var data=arguments.length>1&&arguments[1]!==undefined?arguments[1]:{};
