@@ -19,12 +19,12 @@ Config.whitelist = [
 // `defaultserver` specifies the server to use when the domain name in the
 // address bar is `Config.routes.client`.
 Config.defaultserver = {
-	id: 'urgency-joyfully-overpay.ngrok-free.dev',
+	id: 'showdown',
 	host: 'sim3.psim.us',
 	port: 443,
 	httpport: 443,
 	altport: 443,
-	registered: false
+	registered: true
 };
 
 Config.roomsFirstOpenScript = function () {
