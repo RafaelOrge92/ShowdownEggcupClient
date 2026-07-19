@@ -453,10 +453,32 @@ return false;
 PSConnection.connect();
 
 var PSLoginServer=new(function(){function _class(){}var _proto2=_class.prototype;_proto2.
-rawQuery=function rawQuery(act,data){
-if(act==='getassertion')return Promise.resolve('');
-if(act==='login')return Promise.resolve(']'+JSON.stringify({actionsuccess:true,assertion:''}));
-return Promise.resolve('');
+    rawQuery=function rawQuery(act,data){
+if (!data) data = {};
+data.act = act;
+if (typeof POKEMON_SHOWDOWN_TESTCLIENT_KEY === 'string') {
+	data.sid = POKEMON_SHOWDOWN_TESTCLIENT_KEY.replace(/\%2C/g, ',');
+}
+var url = 'https://play.pokemonshowdown.com/~~localhost/action.php';
+return new Promise(function(resolve, reject) {
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', url);
+	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200) {
+				resolve(xhr.responseText);
+			} else {
+				resolve('');
+			}
+		}
+	};
+	var encoded = [];
+	for (var key in data) {
+		encoded.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]));
+	}
+	xhr.send(encoded.join('&'));
+});
 };_proto2.
 query=function query(act){var data=arguments.length>1&&arguments[1]!==undefined?arguments[1]:{};
 return this.rawQuery(act,data).then(

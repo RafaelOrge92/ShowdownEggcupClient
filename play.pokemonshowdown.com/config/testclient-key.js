@@ -1,0 +1,1 @@
+var POKEMON_SHOWDOWN_TESTCLIENT_KEY = 'dummy';
